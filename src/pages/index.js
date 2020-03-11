@@ -1,18 +1,18 @@
 import React from 'react'
 import { Link, graphql } from 'gatsby'
 
-// import './post.css';
+import './house.css';
 
 import Layout from '../components/layout'
 
 
 const IndexPage = (props) => {
-  const postList = props.data.allMarkdownRemark;
+  const houseList = props.data.allMarkdownRemark;
   return (
     <Layout>
-      {postList.edges.map(({ node }, i) => (
+      {houseList.edges.map(({ node }, i) => (
         <Link to={node.fields.details} key={i} className="link" >
-          <div className="post-list">
+          <div className="house-list">
             <h1>{node.frontmatter.price}</h1>
             <span>{node.frontmatter.address}</span>
             <p>{node.excerpt}</p>
