@@ -11,7 +11,7 @@ const IndexPage = (props) => {
   return (
     <Layout>
       {postList.edges.map(({ node }, i) => (
-        <Link to={node.fields.slug} key={i} className="link" >
+        <Link to={node.fields.details} key={i} className="link" >
           <div className="post-list">
             <h1>{node.frontmatter.price}</h1>
             <span>{node.frontmatter.address}</span>
