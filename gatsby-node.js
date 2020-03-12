@@ -18,7 +18,7 @@ exports.createPages = ({ actions, graphql }) => {
         edges {
           node {
             fields{
-                details
+                houseLink
             }
             frontmatter {
               address
@@ -37,10 +37,10 @@ exports.createPages = ({ actions, graphql }) => {
 
       result.data.allMarkdownRemark.edges.forEach(({ node }) => {
         createPage({
-          path: node.fields.details,
+          path: node.fields.houseLink,
           component: houseTemplate,
           context: {
-            details: node.fields.details,
+            houseLink: node.fields.houseLink,
           }, // additional data can be passed via context
         })
       })
@@ -53,11 +53,11 @@ exports.createPages = ({ actions, graphql }) => {
 exports.onCreateNode = ({ node, getNode, actions }) => {
   const { createNodeField } = actions
   if (node.internal.type === `MarkdownRemark`) {
-    const details = createFilePath({ node, getNode, basePath: `pages` })
+    const houseLink = createFilePath({ node, getNode, basePath: `pages` })
     createNodeField({
       node,
-      name: `details`,
-      value: details,
+      name: `houseLink`,
+      value: houseLink,
     })
 
   }

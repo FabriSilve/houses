@@ -27,8 +27,8 @@ export default House
 */
 
 export const query = graphql`
-query HouseQuery($details: String!) {
-    markdownRemark(fields: { details: { eq: $details } }) {
+query HouseQuery($houseLink: String!) {
+    markdownRemark(fields: { houseLink: { eq: $houseLink } }) {
         html
         excerpt
         frontmatter {

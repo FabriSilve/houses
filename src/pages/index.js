@@ -11,7 +11,7 @@ const IndexPage = (props) => {
   return (
     <Layout>
       {houseList.edges.map(({ node }, i) => (
-        <Link to={node.fields.details} key={i} className="link" >
+        <Link to={node.fields.houseLink} key={i} className="link" >
           <div className="house-list">
             <h1>{node.frontmatter.price}</h1>
             <span>{node.frontmatter.address}</span>
@@ -31,7 +31,7 @@ export const listQuery = graphql`
       edges {
         node {
           fields{
-            details
+            houseLink
           }
           excerpt(pruneLength: 250)
           frontmatter {
