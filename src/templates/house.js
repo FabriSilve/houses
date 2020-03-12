@@ -3,28 +3,27 @@ import { graphql } from 'gatsby'
 import Img from 'gatsby-image';
 
 import Layout from '../components/layout';
+import PrevNext from '../components/prevnext';
 
 
 function House(props) {
   const house = props.data.markdownRemark;
-  const { address, price } = house.frontmatter;
+  const { prev, next } = props.pageContext;
+  const { address, price, floorplan } = house.frontmatter;
   return (
     <Layout>
       <div>
         <h1>{address}</h1>
         <h2>{price}</h2>
-        <Img fluid={house.frontmatter.floorplan.childImageSharp.fluid} />
+        {floorplan && <Img fluid={floorplan.childImageSharp.fluid} />}
         <div dangerouslySetInnerHTML={{ __html: house.html }} />
+        <PrevNext prev={prev && prev.node} next={next && next.node} />
       </div>
     </Layout>
   )
 }
 
 export default House
-
-/*
-
-*/
 
 export const query = graphql`
 query HouseQuery($houseLink: String!) {
