@@ -6,6 +6,7 @@ bike: 46
 buildingyear: 1955
 fees: 0
 price: 1895000
+floorplan: ./floorplan.jpg
 booli: https://www.booli.se/bostad/342776
 broker: https://www.husmanhagberg.se/objekt/annons/OBJ11993_1744039075?source=Booli
 maps: https://www.google.se/maps/place/Duvedsv%C3%A4gen+17,+162+65+V%C3%A4llingby/@59.365522,17.8719916,17z/data=!3m1!4b1!4m5!3m4!1s0x465f9fd27dc884e5:0xdd5146a0ef7c4e19!8m2!3d59.3655193!4d17.8741803

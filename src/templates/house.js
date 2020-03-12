@@ -1,16 +1,19 @@
 import React from 'react';
 import { graphql } from 'gatsby'
+import Img from 'gatsby-image';
 
 import Layout from '../components/layout';
 
 
 function House(props) {
   const house = props.data.markdownRemark;
-  const { adress, price } = house.frontmatter;
+  const { address, price } = house.frontmatter;
   return (
     <Layout>
       <div>
-        <h1>{adress}</h1>
+        <h1>{address}</h1>
+        <h2>{price}</h2>
+        <Img fluid={house.frontmatter.floorplan.childImageSharp.fluid} />
         <div dangerouslySetInnerHTML={{ __html: house.html }} />
       </div>
     </Layout>
@@ -19,6 +22,10 @@ function House(props) {
 
 export default House
 
+/*
+
+*/
+
 export const query = graphql`
 query HouseQuery($details: String!) {
     markdownRemark(fields: { details: { eq: $details } }) {
@@ -26,6 +33,17 @@ query HouseQuery($details: String!) {
         excerpt
         frontmatter {
             address
+            price
+            floorplan {
+              childImageSharp {
+                resize(width: 1500, height: 1500) {
+                  src
+                }
+                fluid(maxWidth: 786) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
         }
     }
 }`
