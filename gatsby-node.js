@@ -1,5 +1,6 @@
 const path = require("path")
 const { createFilePath, createFileNode } = require(`gatsby-source-filesystem`);
+const _ = require('lodash');
 
 
 exports.createPages = ({ actions, graphql }) => {
@@ -20,6 +21,7 @@ exports.createPages = ({ actions, graphql }) => {
             }
             frontmatter {
               address
+              tags
             }
           }
         }
@@ -31,8 +33,30 @@ exports.createPages = ({ actions, graphql }) => {
         return reject(result.errors)
       }
 
-      const houseTemplate = path.resolve('./src/templates/house.js');
       const houses = result.data.allMarkdownRemark.edges
+      const houseTemplate = path.resolve('./src/templates/house.js');
+      const tagsTemplate = path.resolve('./src/templates/tags.js');
+    
+      let allTags = []
+      // Iterate through each post, putting all found tags into `allTags array`
+      _.each(houses, edge => {
+        if (_.get(edge, 'node.frontmatter.tags')) {
+          allTags = allTags.concat(edge.node.frontmatter.tags)
+        }
+      })
+      // Eliminate duplicate tags
+      allTags = _.uniq(allTags)
+
+      allTags.forEach((tag, index) => {
+        createPage({
+          path: `/${_.kebabCase(tag)}/`,
+          component: tagsTemplate,
+          context: {
+            tag,
+          }
+        })
+      })
+    
       houses.forEach(({ node }, index) => {
         createPage({
           path: node.fields.houseLink,
