@@ -10,7 +10,7 @@ import Links from '../components/Links';
 function House(props) {
   const house = props.data.markdownRemark;
   const { prev, next } = props.pageContext;
-  const { address, price, floorplan, booli, broker, maps, floorplanLink } = house.frontmatter;
+  const { address, price, floorplan, booli, broker, maps } = house.frontmatter;
   return (
     <Layout>
       <div>
@@ -38,7 +38,7 @@ query HouseQuery($houseLink: String!) {
             booli
             broker
             maps
-            floorplanLink
+            floorplan
         }
     }
 }`

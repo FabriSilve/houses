@@ -11,6 +11,9 @@ const Header = ({ siteTitle }) => (
   >
     <div
       style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
         margin: `0 auto`,
         maxWidth: 960,
         padding: `1.45rem 1.0875rem`,
@@ -25,6 +28,17 @@ const Header = ({ siteTitle }) => (
           }}
         >
           {siteTitle}
+        </Link>
+      </h1>
+      <h1 style={{ margin: 0 }}>
+        <Link
+          to="/tags"
+          style={{
+            color: `white`,
+            textDecoration: `none`,
+          }}
+        >
+          All tags
         </Link>
       </h1>
     </div>
