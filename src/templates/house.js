@@ -4,20 +4,22 @@ import Img from 'gatsby-image';
 
 import Layout from '../components/layout';
 import PrevNext from '../components/prevnext';
+import Links from '../components/Links';
 
 
 function House(props) {
   const house = props.data.markdownRemark;
   const { prev, next } = props.pageContext;
-  const { address, price, floorplan } = house.frontmatter;
+  const { address, price, floorplan, booli, broker, maps, floorplanLink } = house.frontmatter;
   return (
     <Layout>
       <div>
         <h1>{address}</h1>
         <h2>{price}</h2>
-        {floorplan && <Img fluid={floorplan.childImageSharp.fluid} />}
+        {floorplan && <img src={floorplan} style={{ maxHeight: '800px', width: 'auto' }} />}
         <div dangerouslySetInnerHTML={{ __html: house.html }} />
         <PrevNext prev={prev && prev.node} next={next && next.node} />
+        <Links booli={booli} broker={broker} maps={maps} />
       </div>
     </Layout>
   )
@@ -33,16 +35,10 @@ query HouseQuery($houseLink: String!) {
         frontmatter {
             address
             price
-            floorplan {
-              childImageSharp {
-                resize(width: 1500, height: 1500) {
-                  src
-                }
-                fluid(maxWidth: 786) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
+            booli
+            broker
+            maps
+            floorplanLink
         }
     }
 }`
