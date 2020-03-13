@@ -14,20 +14,18 @@ const Links = props => {
 
   return (
     <div>
-      <h3 className="center">Open in</h3>
-      <ul className="social">
-        <li>
-          <a href={booli} target="blank">
-            Booli
-            {/* <img src={fbIcon} alt="facebook" /> */}
-          </a>
-        </li>
-        {/* <li>
-          <a href={twitter} target="blank">
-            <img src={twitterIcon} alt="twitter" />
-          </a>
-        </li> */}
-      </ul>
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'space-between'
+        }}
+      >
+        <h3 className="center">Open in</h3>
+        <a href={maps} target="blank">Maps</a>
+        <a href={booli} target="blank">Booli</a>
+        <a href={broker} target="blank">Broker</a>
+      </div>
     </div>
   )
 }
